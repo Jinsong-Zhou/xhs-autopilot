@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Generated resources
+images/generated/*.png
+images/generated/*.jpg
+images/generated/*.jpeg
+snapshot.png
+data/research/*.json
+data/research/*.csv
+data/research/*.md
+
+# MCP binaries (download separately — see README)
+xiaohongshu-mcp-*
+xiaohongshu-login-*
+
+# Sensitive data
+cookies.json
+*.local.json
+.env
+.env.*
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
