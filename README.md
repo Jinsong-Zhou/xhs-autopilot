@@ -105,7 +105,6 @@ xhs-autopilot/
 │       └── SKILL.md              # Claude Code Skill 定义（五阶段工作流）
 ├── scripts/
 │   ├── generate_cover.py         # Pillow 封面生成（基础版）
-│   ├── cover_template.html       # HTML 封面模板（高质量版）
 │   └── screenshot_cover.py       # Playwright HTML→PNG 截图
 ├── images/generated/             # 生成的封面图（git 忽略）
 ├── data/research/                # 研究数据存档（git 忽略）

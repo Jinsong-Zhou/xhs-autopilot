@@ -18,6 +18,9 @@ data/research/*.json
 data/research/*.csv
 data/research/*.md
 
+# Cover templates (user-customized, not tracked)
+scripts/cover_template.html
+
 # MCP binaries (download separately — see README)
 xiaohongshu-mcp-*
 xiaohongshu-login-*
