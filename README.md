@@ -1,101 +1,101 @@
-**English** | [中文](README_CN.md)
+**中文** | [English](README_EN.md)
 
 # xhs-autopilot
 
-> Xiaohongshu content creation autopilot — AI Agent workflow powered by Claude Code Skills
+> 小红书内容创作自动驾驶 — 基于 Claude Code Skill 的 AI Agent 全流程自动化
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.13+](https://img.shields.io/badge/Python-3.13%2B-blue.svg)](https://www.python.org/downloads/)
 
-From competitor research to one-click publishing, let an AI Agent handle every step of Xiaohongshu (Little Red Book) content creation.
+从竞品调研到一键发布，让 AI Agent 帮你完成小红书内容创作的每一步。
 
-## Features
+## 功能特性
 
-- **Competitor Research** — Multi-dimensional search (most liked / most saved / latest) to quickly understand the competitive landscape
-- **Pattern Analysis** — Automatically extract viral title patterns, content structure, tag strategies, and comment insights
-- **Smart Writing** — Generate original content based on analysis results, matching platform tone and character limits
-- **Cover Generation** — Two approaches: Pillow for batch generation / HTML+Playwright for high-quality screenshots
-- **One-Click Publish** — Supports immediate and scheduled publishing with auto-filled title, body, tags, and cover image
+- **竞品研究** — 多维度搜索（最多点赞 / 最多收藏 / 最新），快速掌握竞争格局
+- **模式分析** — 自动提取爆款标题模式、内容结构、标签策略和评论区洞察
+- **智能撰写** — 基于分析结果生成原创内容，符合平台调性和字数限制
+- **封面生成** — 两套方案：Pillow 批量生成 / HTML+Playwright 高质量截图
+- **一键发布** — 支持立即发布和定时发布，自动填充标题、正文、标签和封面
 
-## Prerequisites
+## 前置条件
 
-| Dependency | Version | Description |
-|------------|---------|-------------|
-| [Python](https://www.python.org/) | 3.13+ | Runtime |
-| [uv](https://docs.astral.sh/uv/) | latest | Python package manager |
-| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | latest | AI coding assistant (CLI) |
-| [xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) | latest | Xiaohongshu MCP Server (separate download) |
+| 依赖 | 版本 | 说明 |
+|------|------|------|
+| [Python](https://www.python.org/) | 3.13+ | 运行环境 |
+| [uv](https://docs.astral.sh/uv/) | latest | Python 包管理器 |
+| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | latest | AI 编程助手（CLI） |
+| [xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) | latest | 小红书 MCP Server（需单独下载） |
 
-## Installation
+## 安装
 
-### 1. Clone the repository
+### 1. 克隆仓库
 
 ```bash
 git clone https://github.com/Jinsong-Zhou/xhs-autopilot.git
 cd xhs-autopilot
 ```
 
-### 2. Install dependencies
+### 2. 安装依赖
 
 ```bash
 uv sync
-uv run playwright install chromium  # first time only: browser for cover screenshots
+uv run playwright install chromium  # 首次安装：用于封面截图
 ```
 
-### 3. Set up xiaohongshu-mcp
+### 3. 配置 xiaohongshu-mcp
 
-Download the MCP Server, configure Claude Code, and log in to your Xiaohongshu account by following the [xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) project instructions.
+下载 MCP Server、配置 Claude Code、登录小红书账号，请参考 [xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) 项目说明。
 
-## Usage
+## 使用方法
 
-Use the `/xhs-creator` skill in Claude Code:
+在 Claude Code 中使用 `/xhs-creator` skill：
 
 ```
-/xhs-creator "topic keyword"          # full workflow: research → analyze → write → review → publish
-/xhs-creator research "keyword"       # research and analysis only
-/xhs-creator write                    # skip research, write directly
+/xhs-creator "话题关键词"    # 完整流程：研究 → 分析 → 撰写 → 审核 → 发布
+/xhs-creator research "关键词"  # 仅竞品研究和分析
+/xhs-creator write            # 跳过研究，直接撰写
 ```
 
-## Project Structure
+## 项目结构
 
 ```
 xhs-autopilot/
 ├── .claude/skills/
 │   └── xhs-creator/
-│       └── SKILL.md              # Claude Code Skill definition (5-phase workflow)
+│       └── SKILL.md              # Claude Code Skill 定义（五阶段工作流）
 ├── scripts/
-│   ├── generate_cover.py         # Pillow cover generation (basic)
-│   └── screenshot_cover.py       # Playwright HTML→PNG screenshot
-├── workspace/                    # Run artifacts (covers + research data, timestamped subfolders, git-ignored)
-├── CLAUDE.md                     # Claude Code project guide
-├── pyproject.toml                # Project config
+│   ├── generate_cover.py         # Pillow 封面生成（基础版）
+│   └── screenshot_cover.py       # Playwright HTML→PNG 截图
+├── workspace/                    # 运行产物（封面图 + 研究数据，按时间戳子文件夹隔离，git 忽略）
+├── CLAUDE.md                     # Claude Code 项目指引
+├── pyproject.toml                # 项目配置
 └── LICENSE                       # MIT License
 ```
 
-## Platform Limits
+## 平台限制
 
-| Item | Limit |
-|------|-------|
-| Title | Max 20 Chinese characters |
-| Body | ~1000 char limit (emoji may count as multiple chars; target 600-900) |
-| Cover image | 1242×1660px (3:4), max 5MB |
-| Tags | Passed via `tags` parameter as plain strings (no `#` prefix) |
+| 项目 | 限制 |
+|------|------|
+| 标题 | 最多 20 个中文字符 |
+| 正文 | 约 1000 字上限（emoji 按多字符计算，建议 600-900 字） |
+| 封面图 | 1242×1660px（3:4），最大 5MB |
+| 标签 | 通过 `tags` 参数传递，不含 `#` 前缀 |
 
-## Roadmap
+## 路线图
 
-- [ ] **Remotion Skill** — Programmatic video generation with [Remotion](https://remotion.dev/)
-- [ ] **Automated Voiceover** — AI-powered audio narration for video content
-- [ ] **AIGC Image & Video** — Integrate AI generation tools for visual assets
-- [ ] **Automated Editing** — Intelligent video editing and assembly pipeline
+- [ ] **Remotion Skill** — 基于 [Remotion](https://remotion.dev/) 的程序化视频生成
+- [ ] **自动化配音** — AI 语音合成，为视频内容自动生成旁白
+- [ ] **AIGC 生图生视频** — 接入 AI 生成工具，自动产出图片和视频素材
+- [ ] **自动化剪辑** — 智能视频剪辑与组装流水线
 
-## Acknowledgments
+## 致谢
 
-This project relies on [xpzouying/xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) for MCP Server integration with the Xiaohongshu platform. Thanks to the author for the open-source contribution.
+本项目依赖 [xpzouying/xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) 提供的 MCP Server 实现与小红书平台的交互。感谢作者的开源贡献。
 
-## License
+## 许可证
 
 [MIT License](LICENSE)
 
-## Disclaimer
+## 免责声明
 
-This project is for learning and research purposes only. Users should comply with Xiaohongshu's terms of service and community guidelines. The author assumes no responsibility for any consequences arising from the use of this tool. Please use responsibly and respect platform rules and other users' rights.
+本项目仅供学习和研究用途。使用者应遵守小红书平台的服务条款和社区规范。作者不对因使用本工具产生的任何后果承担责任。请合理使用，尊重平台规则和其他用户权益。
