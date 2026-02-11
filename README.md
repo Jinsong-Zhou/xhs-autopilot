@@ -77,7 +77,7 @@ xiaohongshu-mcp-linux-amd64     # Linux
 uv run python scripts/generate_cover.py --title "标题" --template gradient --color warm
 
 # HTML+Playwright 方案（高质量，推荐）
-uv run python scripts/screenshot_cover.py --html scripts/cover_template.html --output images/generated/cover.png
+uv run python scripts/screenshot_cover.py --html scripts/cover_template.html --output workspace/cover.png
 ```
 
 #### 封面模板与配色
@@ -106,8 +106,7 @@ xhs-autopilot/
 ├── scripts/
 │   ├── generate_cover.py         # Pillow 封面生成（基础版）
 │   └── screenshot_cover.py       # Playwright HTML→PNG 截图
-├── images/generated/             # 生成的封面图（git 忽略）
-├── data/research/                # 研究数据存档（git 忽略）
+├── workspace/                    # 运行产物（封面图 + 研究数据，按时间戳子文件夹隔离，git 忽略）
 ├── CLAUDE.md                     # Claude Code 项目指引
 ├── pyproject.toml                # 项目配置
 └── LICENSE                       # MIT License

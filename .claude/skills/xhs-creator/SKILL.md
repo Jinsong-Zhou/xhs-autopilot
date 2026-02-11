@@ -213,7 +213,7 @@ python3 scripts/generate_cover.py \
 【正文】
 （完整正文内容...）
 
-【封面图】images/generated/cover_XXXXXXXX.png
+【封面图】workspace/<run_id>/cover.png
 
 【自检结果】
   ✅ 标题 ≤ 20 字 (X字)
@@ -293,4 +293,4 @@ python3 scripts/generate_cover.py \
 3. **内容原创**: 生成内容必须原创，不得复制/拼凑竞品内容
 4. **数据隐私**: 不要在生成内容中暴露竞品作者的私人信息
 5. **错误处理**: 如果某个 MCP 调用失败，告知用户并提供替代方案
-6. **研究数据**: 重要的研究数据可保存到 `data/research/` 目录供后续参考
+6. **研究数据**: 重要的研究数据可保存到 `workspace/<run_id>/` 目录供后续参考（与封面图放在同一运行子文件夹中）

@@ -20,7 +20,7 @@ uv run playwright install chromium   # first-time only: install browser for scre
 uv run python scripts/generate_cover.py --title "标题" --template gradient --color warm
 
 # Cover generation (HTML+Playwright — high quality, preferred)
-uv run python scripts/screenshot_cover.py --html scripts/cover_template.html --output images/generated/cover.png
+uv run python scripts/screenshot_cover.py --html scripts/cover_template.html --output workspace/<run_id>/cover.png
 ```
 
 ## Architecture

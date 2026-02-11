@@ -10,13 +10,11 @@ wheels/
 .venv
 
 # Generated resources
-images/generated/*.png
-images/generated/*.jpg
-images/generated/*.jpeg
+workspace/*
+!workspace/.gitkeep
+images/generated/
+data/research/
 snapshot.png
-data/research/*.json
-data/research/*.csv
-data/research/*.md
 
 # Cover templates (user-customized, not tracked)
 scripts/cover_template.html

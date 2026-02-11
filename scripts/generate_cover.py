@@ -406,9 +406,9 @@ def generate_cover(
 
     if not output:
         timestamp = datetime.now(tz=timezone(timedelta(hours=8))).strftime("%Y%m%d_%H%M%S")
-        output_dir = Path(__file__).parent.parent / "images" / "generated"
+        output_dir = Path(__file__).parent.parent / "workspace" / timestamp
         output_dir.mkdir(parents=True, exist_ok=True)
-        output = str(output_dir / f"cover_{timestamp}.png")
+        output = str(output_dir / "cover.png")
 
     output_path = Path(output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
