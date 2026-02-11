@@ -57,6 +57,10 @@ Defined in `.claude/skills/xhs-creator/SKILL.md`. Five-phase workflow:
 - **Cover image**: 1242×1660px (3:4), max 5MB (auto-converts to JPEG if exceeded)
 - **Tags**: passed via `tags` parameter as plain strings (no `#` prefix)
 
+## Rules
+
+- **Keep docs in sync**: After modifying code (new features, changed behavior, updated paths, etc.), always check whether `CLAUDE.md` and `README.md` need corresponding updates.
+
 ## Font Handling (macOS)
 
 PingFang.ttc location varies across macOS versions. On macOS 15+ (Sequoia) it lives under `/System/Library/AssetsV2/...` — the code uses `fc-list` to discover it at runtime. Never hardcode the path.

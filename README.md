@@ -1,134 +1,101 @@
+**English** | [中文](README_CN.md)
+
 # xhs-autopilot
 
-> 小红书内容创作自动驾驶 — 基于 Claude Code Skill 的 AI Agent 全流程自动化
+> Xiaohongshu content creation autopilot — AI Agent workflow powered by Claude Code Skills
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.13+](https://img.shields.io/badge/Python-3.13%2B-blue.svg)](https://www.python.org/downloads/)
 
-从竞品调研到一键发布，让 AI Agent 帮你完成小红书内容创作的每一步。
+From competitor research to one-click publishing, let an AI Agent handle every step of Xiaohongshu (Little Red Book) content creation.
 
-## 功能特性
+## Features
 
-- **竞品研究** — 多维度搜索（最多点赞 / 最多收藏 / 最新），快速掌握竞争格局
-- **模式分析** — 自动提取爆款标题模式、内容结构、标签策略和评论区洞察
-- **智能撰写** — 基于分析结果生成原创内容，符合平台调性和字数限制
-- **封面生成** — 两套方案：Pillow 批量生成 / HTML+Playwright 高质量截图
-- **一键发布** — 支持立即发布和定时发布，自动填充标题、正文、标签和封面
+- **Competitor Research** — Multi-dimensional search (most liked / most saved / latest) to quickly understand the competitive landscape
+- **Pattern Analysis** — Automatically extract viral title patterns, content structure, tag strategies, and comment insights
+- **Smart Writing** — Generate original content based on analysis results, matching platform tone and character limits
+- **Cover Generation** — Two approaches: Pillow for batch generation / HTML+Playwright for high-quality screenshots
+- **One-Click Publish** — Supports immediate and scheduled publishing with auto-filled title, body, tags, and cover image
 
-## 前置条件
+## Prerequisites
 
-| 依赖 | 版本 | 说明 |
-|------|------|------|
-| [Python](https://www.python.org/) | 3.13+ | 运行环境 |
-| [uv](https://docs.astral.sh/uv/) | latest | Python 包管理器 |
-| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | latest | AI 编程助手（CLI） |
-| [xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) | latest | 小红书 MCP Server（需单独下载） |
+| Dependency | Version | Description |
+|------------|---------|-------------|
+| [Python](https://www.python.org/) | 3.13+ | Runtime |
+| [uv](https://docs.astral.sh/uv/) | latest | Python package manager |
+| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | latest | AI coding assistant (CLI) |
+| [xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) | latest | Xiaohongshu MCP Server (separate download) |
 
-## 安装
+## Installation
 
-### 1. 克隆仓库
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/Jinsong-Zhou/xhs-autopilot.git
 cd xhs-autopilot
 ```
 
-### 2. 安装依赖
+### 2. Install dependencies
 
 ```bash
 uv sync
-uv run playwright install chromium  # 首次安装：用于封面截图
+uv run playwright install chromium  # first time only: browser for cover screenshots
 ```
 
-### 3. 下载 MCP Server
+### 3. Set up xiaohongshu-mcp
 
-前往 [xiaohongshu-mcp Releases](https://github.com/xpzouying/xiaohongshu-mcp/releases) 下载对应平台的二进制文件，放置到项目根目录：
+Download the MCP Server, configure Claude Code, and log in to your Xiaohongshu account by following the [xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) project instructions.
 
-```
-xiaohongshu-mcp-darwin-arm64    # macOS Apple Silicon
-xiaohongshu-mcp-darwin-amd64    # macOS Intel
-xiaohongshu-mcp-linux-amd64     # Linux
-```
+## Usage
 
-### 4. 配置 Claude Code MCP
-
-在 Claude Code 的 MCP 配置中添加 xiaohongshu-mcp server。参考上游项目的 [配置说明](https://github.com/xpzouying/xiaohongshu-mcp#readme)。
-
-### 5. 登录小红书
-
-在 Claude Code 中调用 `check_login_status` 检查登录状态，如未登录则通过 `get_login_qrcode` 扫码登录。
-
-## 使用方法
-
-### 完整创作流程（推荐）
-
-在 Claude Code 中使用 `/xhs-creator` skill：
+Use the `/xhs-creator` skill in Claude Code:
 
 ```
-/xhs-creator "话题关键词"    # 完整流程：研究 → 分析 → 撰写 → 审核 → 发布
-/xhs-creator research "关键词"  # 仅竞品研究和分析
-/xhs-creator write            # 跳过研究，直接撰写
+/xhs-creator "topic keyword"          # full workflow: research → analyze → write → review → publish
+/xhs-creator research "keyword"       # research and analysis only
+/xhs-creator write                    # skip research, write directly
 ```
 
-### 单独生成封面
-
-```bash
-# Pillow 方案（快速批量）
-uv run python scripts/generate_cover.py --title "标题" --template gradient --color warm
-
-# HTML+Playwright 方案（高质量，推荐）
-uv run python scripts/screenshot_cover.py --html scripts/cover_template.html --output workspace/cover.png
-```
-
-#### 封面模板与配色
-
-| 模板 | 适用场景 |
-|------|---------|
-| `gradient` | 通用型，适合大多数话题 |
-| `minimal` | 生活方式、文艺类 |
-| `list` | 清单 / 推荐 / 排行类 |
-| `bold` | 观点输出、热点评论 |
-
-| 配色 | 适用场景 |
-|------|---------|
-| `warm` | 美食、家居、穿搭 |
-| `cool` | 科技、学习、职场 |
-| `green` | 健康、户外、环保 |
-| `neutral` | 通用、理性分析 |
-
-## 项目结构
+## Project Structure
 
 ```
 xhs-autopilot/
 ├── .claude/skills/
 │   └── xhs-creator/
-│       └── SKILL.md              # Claude Code Skill 定义（五阶段工作流）
+│       └── SKILL.md              # Claude Code Skill definition (5-phase workflow)
 ├── scripts/
-│   ├── generate_cover.py         # Pillow 封面生成（基础版）
-│   └── screenshot_cover.py       # Playwright HTML→PNG 截图
-├── workspace/                    # 运行产物（封面图 + 研究数据，按时间戳子文件夹隔离，git 忽略）
-├── CLAUDE.md                     # Claude Code 项目指引
-├── pyproject.toml                # 项目配置
+│   ├── generate_cover.py         # Pillow cover generation (basic)
+│   └── screenshot_cover.py       # Playwright HTML→PNG screenshot
+├── workspace/                    # Run artifacts (covers + research data, timestamped subfolders, git-ignored)
+├── CLAUDE.md                     # Claude Code project guide
+├── pyproject.toml                # Project config
 └── LICENSE                       # MIT License
 ```
 
-## 平台限制
+## Platform Limits
 
-| 项目 | 限制 |
-|------|------|
-| 标题 | 最多 20 个中文字符 |
-| 正文 | 约 1000 字上限（emoji 按多字符计算，建议 600-900 字） |
-| 封面图 | 1242×1660px（3:4），最大 5MB |
-| 标签 | 通过 `tags` 参数传递，不含 `#` 前缀 |
+| Item | Limit |
+|------|-------|
+| Title | Max 20 Chinese characters |
+| Body | ~1000 char limit (emoji may count as multiple chars; target 600-900) |
+| Cover image | 1242×1660px (3:4), max 5MB |
+| Tags | Passed via `tags` parameter as plain strings (no `#` prefix) |
 
-## 致谢
+## Roadmap
 
-本项目依赖 [xpzouying/xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) 提供的 MCP Server 实现与小红书平台的交互。感谢作者的开源贡献。
+- [ ] **Remotion Skill** — Programmatic video generation with [Remotion](https://remotion.dev/)
+- [ ] **Automated Voiceover** — AI-powered audio narration for video content
+- [ ] **AIGC Image & Video** — Integrate AI generation tools for visual assets
+- [ ] **Automated Editing** — Intelligent video editing and assembly pipeline
 
-## 许可证
+## Acknowledgments
+
+This project relies on [xpzouying/xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) for MCP Server integration with the Xiaohongshu platform. Thanks to the author for the open-source contribution.
+
+## License
 
 [MIT License](LICENSE)
 
-## 免责声明
+## Disclaimer
 
-本项目仅供学习和研究用途。使用者应遵守小红书平台的服务条款和社区规范。作者不对因使用本工具产生的任何后果承担责任。请合理使用，尊重平台规则和其他用户权益。
+This project is for learning and research purposes only. Users should comply with Xiaohongshu's terms of service and community guidelines. The author assumes no responsibility for any consequences arising from the use of this tool. Please use responsibly and respect platform rules and other users' rights.
