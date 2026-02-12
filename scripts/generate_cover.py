@@ -7,10 +7,7 @@ optimized for Xiaohongshu's image requirements.
 from __future__ import annotations
 
 import argparse
-import math
 import subprocess
-import sys
-import textwrap
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 

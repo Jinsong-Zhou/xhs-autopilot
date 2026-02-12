@@ -12,8 +12,6 @@ wheels/
 # Generated resources
 workspace/*
 !workspace/.gitkeep
-images/generated/
-data/research/
 snapshot.png
 
 # Cover templates (user-customized, not tracked)
@@ -28,6 +26,10 @@ cookies.json
 *.local.json
 .env
 .env.*
+
+# Local reports & learned skills (not shared)
+.reports/
+.claude/skills/learned/
 
 # macOS
 .DS_Store
